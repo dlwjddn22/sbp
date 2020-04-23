@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Thymeleaf Test Page</h1>
+	<h3 th:text="${uname}"></h3>
+	<hr />
+	<p th:text="'name: ' + ${name}"></p>
+	<form method="post" action="korean">
+		<input type="text" name="name" value="세종대왕" />
+		<button type="submit">KOREAN</button>
+	</form>
+	<hr />
+	<div th:if="${user}">
+		<div th:text="${user}"></div>
+		<div th:object="${user}">Thymeleaf Test : <span th:text="|*{uname}|"></span></div>
+		<div th:text="${user.uname}"></div>
+	</div>
+	<div th:unless="${user}">
+		<div>No User!!</div>
+	</div>
+	<hr />
+	<ul>
+		<li th:each="data: ${users}" th:text="${data}"></li>
+		<li th:each="data: ${users}" th:text="${data.uid} + '.' + ${data.uname}"></li>
+		<li th:each="data: ${users}" th:object="${data}">
+			<span th:text="|*{uid}|"></span>
+			<Strong th:text="|*{uname}|"></Strong>
+		</li>
+	</ul>
+	<hr />
+	<a th:href="@{http://localhost:9090/hello}">HELLO</a>
+</body>
+</html>
