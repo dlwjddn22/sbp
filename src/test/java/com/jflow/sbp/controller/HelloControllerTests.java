@@ -28,8 +28,7 @@ public class HelloControllerTests {
 		assertThat(hello.getBody().equals("Hello 스프링부트!!"));
 		
 		String uid = "user1";
-		ResponseEntity<User> helloUser = restTemplate.getForEntity("/helloUser/" + uid,
-				User.class);
+		ResponseEntity<User> helloUser = restTemplate.getForEntity("/helloUser/" + uid, User.class);
 		System.out.println("helloUser=" + helloUser);
 		assertThat(helloUser.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(helloUser.getBody().getUid().equals(uid));
