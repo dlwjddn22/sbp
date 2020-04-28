@@ -27,49 +27,47 @@ class SbpApplicationTests {
 
 	@Autowired
 	private DataSource ds;
-	
+
 	@Autowired
 	private UserMapper mapper;
-	
+
 	@Test
 	public void testUserMapper() throws Exception {
 		User user = mapper.getLoginInfo("user1");
 		System.out.println("User>>" + user);
 		assertEquals("김일수", user.getUname());
 	}
-	
-	@Ignore @Test
-	public void testDataSource() throws Exception{
+
+	@Ignore
+	@Test
+	public void testDataSource() throws Exception {
 		System.out.println("DS=" + ds);
-		
-		try (Connection conn = ds.getConnection()){
+
+		try (Connection conn = ds.getConnection()) {
 			System.out.println("Cooooooon=" + conn);
 			assertThat(conn).isInstanceOf(Connection.class);
-			
+
 			assertEquals(100, getLong(conn, "select 100"));
 			assertTrue(0 < getLong(conn, "select count(*) from User"));
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
-	
+
 	private int getLong(Connection conn, String sql) throws SQLException {
-		// TODO Auto-generated method stub
 		int result = 0;
 		ResultSet rs = null;
-		try(Statement stmt = conn.createStatement()){
+		try (Statement stmt = conn.createStatement()) {
 			rs = stmt.executeQuery(sql);
-			if(rs.next()) {
+			if (rs.next()) {
 				result = rs.getInt(1);
 				System.out.println(result);
 			}
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			if(rs != null)
-			{
+		} finally {
+			if (rs != null) {
 				rs.close();
 			}
 		}

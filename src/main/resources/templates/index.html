@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<div th:text="${hello}"></div>
-	
-	<a th:href="@{http://localhost:9090/hello}">hello</a> | 
-	<a th:href="@{http://localhost:9090/hello2}">hello2</a>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+  </head>
+  <body>
+    <div th:text="${hello}"></div>
+
+    <a th:href="@{./hello}">hello</a> |
+    <a th:href="@{./hello2}">hello2</a>
+  </body>
 </html>

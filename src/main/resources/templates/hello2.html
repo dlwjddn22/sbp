@@ -1,37 +1,95 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<h1>Thymeleaf Test Page</h1>
-	<h3 th:text="${uname}"></h3>
-	<hr />
-	<p th:text="'name: ' + ${name}"></p>
-	<form method="post" action="korean">
-		<input type="text" name="name" value="세종대왕" />
-		<button type="submit">KOREAN</button>
-	</form>
-	<hr />
-	<div th:if="${user}">
-		<div th:text="${user}"></div>
-		<div th:object="${user}">Thymeleaf Test : <span th:text="|*{uname}|"></span></div>
-		<div th:text="${user.uname}"></div>
-	</div>
-	<div th:unless="${user}">
-		<div>No User!!</div>
-	</div>
-	<hr />
-	<ul>
-		<li th:each="data: ${users}" th:text="${data}"></li>
-		<li th:each="data: ${users}" th:text="${data.uid} + '.' + ${data.uname}"></li>
-		<li th:each="data: ${users}" th:object="${data}">
-			<span th:text="|*{uid}|"></span>
-			<Strong th:text="|*{uname}|"></Strong>
-		</li>
-	</ul>
-	<hr />
-	<a th:href="@{http://localhost:9090/hello}">HELLO</a>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        Thymeleaf Test Page <span class="badge badge-secondary">New</span>
+      </h1>
+      <h3 th:text="${uname}"></h3>
+      <hr />
+
+      <label th:text="'name: ' + ${name}"></label>
+      <form method="post" action="./korean" class="form-inline">
+        <input type="text" name="name" class="form-control" value="세종대왕" />
+        &nbsp;<button type="submit" class="btn btn-primary">KOREAN</button>
+      </form>
+
+      <hr />
+      <div th:if="${user}">
+        <div th:text="${user}"></div>
+        <div th:object="${user}">
+          Thymeleaf Test : <span th:text="|*{uname}|"></span>
+        </div>
+        <div th:text="${user.uname}"></div>
+      </div>
+      <div th:unless="${user}">
+        <div>No User!!</div>
+      </div>
+      <hr />
+      <ul>
+        <li th:each="data: ${users}" th:text="${data}"></li>
+        <li
+          th:each="data: ${users}"
+          th:text="${data.uid} + '.' + ${data.uname}"
+        ></li>
+        <li th:each="data: ${users}" th:object="${data}">
+          <span th:text="|*{uid}|"></span>
+          <strong th:text="|*{uname}|"></strong>
+        </li>
+      </ul>
+      <hr />
+
+      <table class="table table-hover table-select">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">User</th>
+            <th scope="col">Name</th>
+            <th scope="col">Point</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="item, num: ${users}">
+            <th scope="row">[[${num.count}]]</th>
+            <td>[[${item.uid}]]</td>
+            <td>[[${item.uname}]]</td>
+            <td>[[${item.upoint}]]</td>
+          </tr>
+          <tr th:each="item, num: ${users}" th:object="${num}">
+            <th th:text="|*{count}|" scope="row"></th>
+            <td th:text="|*{count}|"></td>
+            <td th:text="|*{count}|"></td>
+            <td th:text="|*{count}|"></td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+      <a th:href="@{./hello}" class="btn btn-outline-primary">HELLO</a>
+    </div>
+  </body>
 </html>
