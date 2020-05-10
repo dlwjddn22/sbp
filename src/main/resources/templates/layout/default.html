@@ -5,7 +5,13 @@
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 >
   <head th:replace="fragments/config :: configFragment"></head>
-  <header th:replace="fragments/header :: headerFragment"></header>
-  <div layout:fragment="content"></div>
-  <footer th:replace="fragments/footer :: footerFragment"></footer>
+  <body id="page-top">
+    <div th:replace="fragments/header :: headerFragment"></div>
+    <div layout:fragment="content"></div>
+    <footer th:replace="fragments/footer :: footerFragment"></footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+  </body>
 </html>
