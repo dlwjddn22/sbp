@@ -1,13 +1,24 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Insert title here</title>
-  </head>
-  <body>
-    <div th:text="${hello}"></div>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorator="layout/default"
+>
+  <!-- index.html 고유 CSS 추가 -->
+  <th:block layout:fragment="css">
+    <style type="text/css">
+      div {
+        border: 1px solid red;
+      }
+    </style>
+  </th:block>
 
-    <a th:href="@{./hello}">hello</a> |
-    <a th:href="@{./hello2}">hello2</a>
-  </body>
+  <!-- index.html 고유 스크립트 추가 -->
+  <th:block layout:fragment="script"> </th:block>
+
+  <div layout:fragment="content">
+    <div>
+      index.html 입니다.
+    </div>
+  </div>
 </html>

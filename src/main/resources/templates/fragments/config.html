@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head th:fragment="configFragment">
+    <meta charset="UTF-8" />
+    <!-- 공통으로 쓰이는 css파일을넣는다.-->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    />
+    <!-- 컨텐츠페이지의 고유 CSS 를 추가하기 위한 선언문 - 실제로는 contents에 css를 넣는다. -->
+    <th:block layout:fragment="css"></th:block>
+
+    <!-- 공통으로 쓰이는 css파일을넣는다.-->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- 컨텐츠페이지의 고유 javascript를 추가하기 위한 선언문 - 실제로는 contents에 javascript를 넣는다. -->
+    <th:block layout:fragment="script"></th:block>
+  </head>
+</html>
