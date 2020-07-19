@@ -7291,13 +7291,23 @@ button.bg-dark:focus {
   position: sticky !important;
 }
 
-.fixed-top {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1030;
+@media (max-width: 767px) /* @grid-float-breakpoint -1 */
+{
+  .fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+  }
+  body{
+    padding-top:70px
+  }
+  #content {
+    padding-top: 1rem !important;
+  }
 }
+
 
 .fixed-bottom {
   position: fixed;
@@ -9943,9 +9953,9 @@ a:focus {
   width: 2.5rem;
 }
 
-.topbar #sidebarToggleTop:hover {
+/* .topbar #sidebarToggleTop:hover {
   background-color: #eaecf4;
-}
+} */
 
 .topbar #sidebarToggleTop:active {
   background-color: #dddfeb;

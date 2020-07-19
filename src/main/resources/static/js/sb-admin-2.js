@@ -1,6 +1,12 @@
 (function($) {
   "use strict"; // Start of use strict
 
+  if ($(window).width() < 768) {
+    $("body").addClass("sidebar-toggled");
+    $(".sidebar").addClass("toggled");
+    $('.sidebar .collapse').collapse('hide');
+  }
+
   // Toggle the side navigation
   $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
     $("body").toggleClass("sidebar-toggled");
@@ -13,8 +19,13 @@
   // Close any open menu accordions when window is resized below 768px
   $(window).resize(function() {
     if ($(window).width() < 768) {
+      $("body").addClass("sidebar-toggled");
+      $(".sidebar").addClass("toggled");
       $('.sidebar .collapse').collapse('hide');
-    };
+    }else{
+      $("body").removeClass("sidebar-toggled");
+      $(".sidebar").removeClass("toggled");
+    }
   });
 
   // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
@@ -44,6 +55,11 @@
       scrollTop: ($($anchor.attr('href')).offset().top)
     }, 1000, 'easeInOutExpo');
     e.preventDefault();
+    
+  });
+
+  $(document).click(function(e){
+      $('.sidebar .collapse').collapse('hide');
   });
 
 })(jQuery); // End of use strict
