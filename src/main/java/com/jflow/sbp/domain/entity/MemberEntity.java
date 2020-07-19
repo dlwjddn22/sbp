@@ -16,6 +16,9 @@ public class MemberEntity {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 50, nullable = false)
+    private String name;
+
     @Column(length = 20, nullable = false)
     private String email;
 
@@ -23,8 +26,9 @@ public class MemberEntity {
     private String password;
 
     @Builder
-    public MemberEntity(Long id, String email, String password) {
+    public MemberEntity(Long id, String name, String email, String password) {
         this.id = id;
+        this.name = name;
         this.email = email;
         this.password = password;
     }
