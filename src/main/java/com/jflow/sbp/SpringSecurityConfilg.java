@@ -30,7 +30,10 @@ public class SpringSecurityConfilg extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception
     {
         // static 디렉터리의 하위 파일 목록은 인증 무시 ( = 항상통과 )
-        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/h2/**");
+        web.ignoring().antMatchers(
+         "/vendor/**", "/scss/**", "/css/**", "/js/**", "/img/**",
+         "/lib/**", "/h2/**"
+        );
     }
 
     @Override
@@ -38,17 +41,19 @@ public class SpringSecurityConfilg extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 // 페이지 권한 설정
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/myinfo").hasRole("MEMBER")
-                .antMatchers("/**").permitAll()
+                .antMatchers("/user/signup").permitAll()
+                .antMatchers("/**").authenticated()
+                //.antMatchers("/index").permitAll()
+                // .antMatchers("/**").permitAll()
             .and() // 로그인 설정
                 .formLogin()
-                .loginPage("/user/login")
-                .defaultSuccessUrl("/user/login/result")
+                .loginPage("/")///user/login
+                .defaultSuccessUrl("/main")///user/login/result
                 .permitAll()
             .and() // 로그아웃 설정
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
-                .logoutSuccessUrl("/user/logout/result")
+                .logoutSuccessUrl("/") //user/logout/result
                 .invalidateHttpSession(true)
             .and()
                 // 403 예외처리 핸들링
