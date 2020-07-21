@@ -24,6 +24,14 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <script th:inline="javascript">
+      // /*<![CDATA[*/
+      //   /*[# th:if="${param.error}"]*/
+      //     alert("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다");
+      //   /*[/]*/
+      // /*]]>*/
+    </script>
   </head>
    <body class="bg-gradient-primary">
     <div class="container">
@@ -76,8 +84,8 @@
                         </div>
                       </div>
                       <div class="text-center">   
-                        <label class="small text-danger" th:if="${param.error}">
-                           가입하지 않은 아이디이거나, 잘못된 비밀번호입니다
+                        <label id="divLoginFail" class="small text-danger" th:if="${param.error}">
+                          가입하지 않은 아이디이거나, 잘못된 비밀번호입니다
                        </label>
                      </div>
                       <a href="#" class="btn btn-primary btn-user btn-block" onclick="$('#userForm').submit()">
